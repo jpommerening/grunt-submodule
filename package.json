@@ -1,0 +1,47 @@
+{
+  "name": "grunt-submodule",
+  "description": "Manage project submodules with semantic version ranges.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jpommerening/grunt-submodule",
+  "author": {
+    "name": "Jonas Pommerening",
+    "email": "jonas.pommerening@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jpommerening/grunt-submodule.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jpommerening/grunt-submodule/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jpommerening/grunt-submodule/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.4"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.4"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "dependencies": {
+    "async": "^0.8.0",
+    "git-semver": "0.0.1",
+    "minimatch": "^0.2.14"
+  }
+}
