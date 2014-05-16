@@ -107,8 +107,31 @@ grunt.initConfig({
     options: {
       gruntfile: __dirname + '/Gruntfile.shared.js',
       tasks: [ 'build', 'test' ]
+    }
+  }
+});
+```
+
+#### Submodule-Specific Options
+It is possible to override the global options for each submodule. You can
+either specify options fora specific submodule or use a pattern to configure
+multiple submodules at once.
+
+```js
+grunt.initConfig({
+  submodule: {
+    options: {
+      tasks: [ 'build' ]
     },
-    deps/*: {
+    'deps/*': {
+      options: {
+        tasks: [ 'build', 'test' ]
+      }
+    },
+    'deps/grunt-submodule': {
+      options: {
+        tasks: [ 'test', 'jshint' ]
+      }
     }
   }
 });
