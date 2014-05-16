@@ -12,18 +12,33 @@ var fork = require('child_process').fork;
 
 module.exports = function (grunt) {
 
+  var _ = grunt.util._;
   var git;
 
   grunt.registerTask('submodule', 'Run tasks across submodules.', function() {
     var options = this.options({
       base: '.',
       gruntfile: 'Gruntfile.js',
-      tasks: ['default']
+      tasks: arguments.length > 1 ? [].slice.call(arguments, 1) : ['default']
     });
-
-    var tasks = arguments.length > 1 ? [].slice.call(arguments, 1) : options.tasks;
-    var filter = arguments[0] ? minimatch.filter(arguments[0]) : function() { return true; };
+    var data = grunt.config(this.name);
     var done = this.async();
+    var filter = arguments[0] ? minimatch.filter(arguments[0]) : function() { return true; };
+
+    function getOptions(submodule) {
+      var sources = [];
+      if (data.hasOwnProperty(submodule)) {
+        sources.push(data[submodule].options || {});
+      }
+      sources.push.apply(sources, Object.keys(data).filter(function (key) {
+        return key !== 'options' && minimatch(key, submodule);
+      }).map(function (key) {
+        return data[key].options || {};
+      }));
+      sources.push(options);
+
+      return _.defaults.apply(_, sources);
+    }
 
     if (!git) {
       try {
@@ -65,8 +80,9 @@ module.exports = function (grunt) {
       async.eachSeries(submodules, function (submodule, done) {
         grunt.log.ok('Submodule', submodule);
         grunt.log.writeln();
+        var options = getOptions(submodule);
         var err;
-        var args = [options.base, submodule, options.gruntfile].concat(tasks);
+        var args = [options.base, submodule, options.gruntfile].concat(options.tasks);
         var cp = fork(__dirname + '/lib/grunt', args, {});
         cp.on('message', function (msg) {
           if (msg.fail === 'fatal') {

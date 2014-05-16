@@ -29,12 +29,14 @@ module.exports = function (grunt) {
     },
 
     submodule: {
-      default_options: {
+      'test/fixtures/test2': {
         options: {
+          tasks: ['jshint']
         }
       },
-      custom_options: {
+      'test/fixtures/*': {
         options: {
+          tasks: ['test']
         }
       }
     },
