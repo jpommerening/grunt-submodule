@@ -1,3 +1,8 @@
+/**
+ * grunt-submodule – copyright © 2014, Jonas Pommerening
+ * Released under the MIT license.
+ * https://github.com/jpommerening/grunt-submodule.git
+ */
 'use strict';
 
 var async = require('async');
@@ -7,15 +12,12 @@ var minimatch = require('minimatch');
 module.exports = function(grunt) {
 
   grunt.registerTask('submodule', 'Run tasks across submodules.', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       base: '.',
       gruntfile: 'Gruntfile.js',
       tasks: []
     });
 
-    var node = process.argv[0];
-    var gruntCli = process.argv[1];
     var tasks = arguments.length > 1 ? [].slice.call(arguments, 1) : options.tasks;
     var filter = arguments[0] ? minimatch.filter(arguments[0]) : function() { return true; };
     var done = this.async();

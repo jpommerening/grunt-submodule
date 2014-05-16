@@ -28,10 +28,7 @@
   },
   "dependencies": {
     "async": "~0.8.0",
-    "minimatch": "~0.2.14",
-    "git-semver": "0.0.1",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-notify": "~0.3.0"
+    "minimatch": "~0.2.14"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

@@ -1,6 +1,18 @@
+/**
+ * grunt-submodule – copyright © 2014, Jonas Pommerening
+ * Released under the MIT license.
+ * https://github.com/jpommerening/grunt-submodule.git
+ */
+'use strict';
+
 var fs = require('fs');
 var path = require('path');
 var grunt = require('grunt');
+
+if (process.argv.length < 5) {
+  console.error('Usage: node ' + __filename + ' <base> <submodule> <gruntfile> [tasks...]');
+  process.exit(1);
+}
 
 /* needed args: base, submodule, gruntfile, tasks */
 var base = path.resolve(process.argv[2]);
