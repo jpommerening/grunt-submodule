@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "async": "~0.8.0",
+    "which": "~1.0.5",
     "minimatch": "~0.2.14"
   },
   "devDependencies": {

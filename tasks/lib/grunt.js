@@ -60,6 +60,7 @@ grunt.fail.fatal = function(e, errcode) {
     error: errorToObject(e),
     errcode: errcode
   });
+  grunt.task.clearQueue();
   grunt.util.exit(typeof errcode === 'number' ? errcode : fail.code.FATAL_ERROR);
 };
 
@@ -69,6 +70,7 @@ grunt.fail.warn = function(e, errcode) {
     error: errorToObject(e),
     errcode: errcode
   });
+  grunt.task.clearQueue();
 };
 
 function uncaughtHandler(err) {

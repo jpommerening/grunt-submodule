@@ -79,7 +79,7 @@ these will take precedence over the ones inside the base directory.
 
 #### option.tasks
 Type: `Array`
-Default value: `[]`
+Default value: `[ 'default' ]`
 
 The tasks to run if no tasks were given on the command line.
 

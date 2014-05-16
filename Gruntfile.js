@@ -1,4 +1,4 @@
-/**
+/*
  * grunt-submodule – copyright © 2014, Jonas Pommerening
  * Released under the MIT license.
  * https://github.com/jpommerening/grunt-submodule.git
