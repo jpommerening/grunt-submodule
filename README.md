@@ -1,17 +1,32 @@
 # grunt-submodule
 
-> Manage project submodules with semantic version ranges.
+> Run Grunt across Git submodules.
 
-## Getting Started
-This plugin requires Grunt `~0.4.4`
+`grunt-submodule` provides a Grunt task to run Grunt in a project's
+submodules. You can use the submodule's Gruntfile and `node_modules` or keep
+both outside the submodule.
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+```console
+$ grunt submodule:deps/*:build
+        └─1─────┘ └─2──┘ └─3─┘
 
-```shell
-npm install grunt-submodule --save-dev
+  1) this task
+  2) submodule pattern
+  3) grunt task to run there
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+
+## Getting Started
+
+This plugin requires Grunt (d'uh). You probably have used [Grunt][] before,
+but just in case you're wondering what this is all about, have a look at the
+[Getting Started][] guide.
+
+To use this plugin, you first need to install it and add it to your Gruntfile:
+
+```console
+$ npm install grunt-submodule --save-dev
+```
 
 ```js
 grunt.loadNpmTasks('grunt-submodule');
@@ -19,8 +34,15 @@ grunt.loadNpmTasks('grunt-submodule');
 
 ## The "submodule" task
 
+The `submodule` task tries to mimic the behavior of [multi-tasks][] – tasks
+that can have multiple configurations, defined using arbitrarily named
+"targets." Each submodule behaves like a target but it can be used without any
+explicit configuration.
+
 ### Overview
-In your project's Gruntfile, add a section named `submodule` to the data object passed into `grunt.initConfig()`.
+
+In your project's Gruntfile, add a section named `submodule` to the data
+object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
@@ -28,62 +50,78 @@ grunt.initConfig({
     options: {
       // Task-specific options go here.
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+    '**/*_test': {
+      // Submodule-specific file lists and/or options go here.
+      options: {
+      }
+    }
+  }
 })
 ```
 
 ### Options
 
-#### options.separator
+#### options.gruntfile
 Type: `String`
-Default value: `',  '`
+Default value: `Gruntfile.js`
 
-A string value that is used to do something with whatever.
+The Gruntfile to use. This is relative to the submodule path, so if you want
+to share the same Gruntfile with multiple submodules, just use an absolute
+path.
 
-#### options.punctuation
+#### options.base
 Type: `String`
 Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
+The base directory to load Grunt tasks from if they do not exist in the
+submodule. If the submodule has its own `node_modules` or `tasks` directories
+these will take precedence over the ones inside the base directory.
+
+#### option.tasks
+Type: `Array`
+Default value: `[]`
+
+The tasks to run if no tasks were given on the command line.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, the task will just enter each `submodule`, run Grunt with the
+default task and exit.
 
 ```js
 grunt.initConfig({
   submodule: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
+    options: {}
+  }
+});
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+Here we use a shared Gruntfile for all submodules and run the `build` and `test`
+tasks in each of them.
 
 ```js
 grunt.initConfig({
   submodule: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      gruntfile: __dirname + '/Gruntfile.shared.js',
+      tasks: [ 'build', 'test' ]
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
+    deps/*: {
+    }
+  }
+});
 ```
 
+[Grunt]: http://gruntjs.com "Grunt – The JavaScript Task Runner"
+[Getting Started]: http://gruntjs.com "Grunt – Getting Started"
+[Multi-Tasks]: http://gruntjs.com/configuring-tasks#task-configuration-and-targets
+
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+
+Just [fork the repository](https://github.com/jpommerening/grunt-submodule.git),
+send me a pull request and we'll work out the rest together, Ok?
 
 ## Release History
 _(Nothing yet)_
