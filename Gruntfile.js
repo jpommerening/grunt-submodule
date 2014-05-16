@@ -1,73 +1,73 @@
-/*
- * grunt-submodule
- * https://github.com/jpommerening/grunt-submodule
- *
- * Copyright (c) 2014 Jonas Pommerening
- * Licensed under the MIT license.
- */
+module.exports = function (grunt) {
+  'use strict';
 
-'use strict';
-
-module.exports = function(grunt) {
-
-  // Project configuration.
   grunt.initConfig({
+    clean: {
+      tests: ['tmp']
+    },
     jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>',
-      ],
       options: {
         jshintrc: '.jshintrc',
       },
+      tasks: [
+        __filename,
+        'tasks/*.js',
+      ],
+      test: {
+        options: {
+          jshintrc: 'test/.jshintrc'
+        },
+        src: [
+          'test/*.js'
+        ]
+      }
     },
 
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp'],
-    },
-
-    // Configuration to be run (and then tested).
     submodule: {
       default_options: {
         options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
+        }
       },
       custom_options: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!',
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
+        }
+      }
+    },
+
+    mochacli: {
+      options: {
+        ui: 'bdd',
+        reporter: 'spec'
       },
+      test: [
+        'test/*.js'
+      ]
     },
-
-    // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js'],
-    },
-
+    watch: {
+      tasks: {
+        files: [
+          __filename,
+          'tasks/*.js'
+        ],
+        tasks: ['jshint:tasks', 'test']
+      },
+      test: {
+        files: [
+          'test/*.js'
+        ],
+        tasks: ['jshint:test', 'test']
+      }
+    }
   });
 
-  // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-mocha-cli');
+  grunt.loadNpmTasks('grunt-notify');
 
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'submodule', 'nodeunit']);
-
-  // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
-
+  grunt.registerTask('test', ['clean', 'submodule', 'mochacli']);
+  grunt.registerTask('default', ['test', 'jshint']);
 };

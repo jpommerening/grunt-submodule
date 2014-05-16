@@ -13,5 +13,12 @@
   "sub": true,
   "trailing": true,
   "undef": true,
-  "unused": true
+  "unused": true,
+
+  "globals": {
+    "describe": true,
+    "it": true,
+    "beforeEach": true,
+    "afterEach": true
+  }
 }

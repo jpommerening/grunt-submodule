@@ -22,19 +22,19 @@ module.exports = function(grunt) {
 
     grunt.util.spawn({
       cmd: 'git',
-      args: ['submodule', 'status']
+      args: ['ls-files', '-z', '--stage']
     }, function (error, result, code) {
       if (error) {
         return done(error);
       }
 
-      var lines = result.stdout.split(grunt.util.linefeed);
-      var pattern = /([-+ ])([0-9a-f]{40}) (.*) \([^)]+\)$/;
+      var files = result.stdout.split('\0');
+      var pattern = /([0-9]+) ([0-9a-f]{40}) ([0-9])\t(.*)$/;
 
-      var submodules = lines.map(pattern.exec.bind(pattern)).filter(function(match) {
-        return match && match[1] !== '-' && filter(match[3]);
+      var submodules = files.map(pattern.exec.bind(pattern)).filter(function(match) {
+        return match && match[1] === '160000' && filter(match[4]);
       }).map(function(match) {
-        return match[3];
+        return match[4];
       });
 
       function errorFromObject(o) {

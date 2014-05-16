@@ -1,24 +1,23 @@
 {
   "name": "grunt-submodule",
-  "description": "Manage project submodules with semantic version ranges.",
   "version": "0.0.1",
+  "description": "Manage project submodules with semantic version ranges.",
+  "license": "MIT",
   "homepage": "https://github.com/jpommerening/grunt-submodule",
-  "author": {
-    "name": "Jonas Pommerening",
-    "email": "jonas.pommerening@gmail.com"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/jpommerening/grunt-submodule.git"
   },
+  "author": {
+    "name": "Jonas Pommerening",
+    "email": "jonas.pommerening@gmail.com",
+    "url": "https://npmjs.org/~jpommerening"
+  },
   "bugs": {
     "url": "https://github.com/jpommerening/grunt-submodule/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/jpommerening/grunt-submodule/blob/master/LICENSE-MIT"
-    }
+  "keywords": [
+    "gruntplugin"
   ],
   "main": "Gruntfile.js",
   "engines": {
@@ -27,21 +26,24 @@
   "scripts": {
     "test": "grunt test"
   },
+  "dependencies": {
+    "async": "~0.8.0",
+    "minimatch": "~0.2.14",
+    "git-semver": "0.0.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-notify": "~0.3.0"
+  },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.4"
+    "grunt": "~0.4.4",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-mocha-cli": "~1.8.0",
+    "grunt-notify": "~0.2.20",
+    "expect.js": "~0.3.1"
   },
   "peerDependencies": {
     "grunt": "~0.4.4"
-  },
-  "keywords": [
-    "gruntplugin"
-  ],
-  "dependencies": {
-    "async": "^0.8.0",
-    "git-semver": "0.0.1",
-    "minimatch": "^0.2.14"
   }
 }
