@@ -56,13 +56,13 @@ module.exports = function (grunt) {
           __filename,
           'tasks/*.js'
         ],
-        tasks: ['jshint:tasks', 'test']
+        tasks: ['newer:jshint:tasks', 'clean', 'submodule', 'mochacli']
       },
       test: {
         files: [
           'test/*.js'
         ],
-        tasks: ['jshint:test', 'test']
+        tasks: ['newer:jshint:test', 'newer:mochacli']
       }
     }
   });
@@ -74,6 +74,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-cli');
   grunt.loadNpmTasks('grunt-notify');
+  grunt.loadNpmTasks('grunt-newer');
 
   grunt.registerTask('test', ['clean', 'submodule', 'mochacli']);
   grunt.registerTask('default', ['test', 'jshint']);

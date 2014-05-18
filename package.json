@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "async": "~0.8.0",
-    "which": "~1.0.5",
-    "minimatch": "~0.2.14"
+    "minimatch": "~0.2.14",
+    "which": "~1.0.5"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
@@ -39,6 +39,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-mocha-cli": "~1.8.0",
     "grunt-notify": "~0.2.20",
+    "grunt-newer": "~0.7.0",
     "expect.js": "~0.3.1"
   },
   "peerDependencies": {
