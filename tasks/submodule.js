@@ -56,6 +56,9 @@ module.exports = function (grunt) {
       if (error) {
         return done(error);
       }
+      if (code) {
+        return done(new Error('git returned ' + code));
+      }
 
       var files = result.stdout.split('\0');
       var pattern = /([0-9]+) ([0-9a-f]{40}) ([0-9])\t(.*)$/;

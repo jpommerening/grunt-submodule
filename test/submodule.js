@@ -9,6 +9,8 @@ describe('the submodule task', function () {
 
   'use strict';
 
-  it('needs some tests');
+  it('needs some tests', function() {
+    // :(
+  });
 
 });
