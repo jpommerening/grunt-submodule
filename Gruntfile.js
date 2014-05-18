@@ -14,10 +14,12 @@ module.exports = function (grunt) {
       options: {
         jshintrc: '.jshintrc',
       },
-      tasks: [
-        __filename,
-        'tasks/*.js',
-      ],
+      tasks: {
+        src: [
+          __filename,
+          'tasks/*.js',
+        ]
+      },
       test: {
         options: {
           jshintrc: 'test/.jshintrc'
@@ -46,9 +48,9 @@ module.exports = function (grunt) {
         ui: 'bdd',
         reporter: 'spec'
       },
-      test: [
-        'test/*.js'
-      ]
+      test: {
+        src: [ 'test/*.js' ]
+      }
     },
     watch: {
       tasks: {
