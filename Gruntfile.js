@@ -8,7 +8,7 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     clean: {
-      tests: ['tmp']
+      tests: ['test/fixtures/*/tmp']
     },
     jshint: {
       options: {
@@ -34,6 +34,11 @@ module.exports = function (grunt) {
       'test/fixtures/*': {
         options: {
           tasks: ['test']
+        }
+      },
+      'test/fixtures/test1': {
+        options: {
+          tasks: ['default']
         }
       }
     },

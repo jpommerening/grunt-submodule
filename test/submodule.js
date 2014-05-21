@@ -4,13 +4,17 @@
  * https://github.com/jpommerening/grunt-submodule.git
  */
 var expect = require('expect.js');
+var grunt = require('grunt');
 
 describe('the submodule task', function () {
 
   'use strict';
 
   it('needs some tests', function() {
-    // :(
+    expect(grunt.file.read('test/fixtures/test1/tmp/test1')).to.equal('test1');
+    expect(grunt.file.exists('test/fixtures/test1/tmp/test2')).to.be(false);
+    expect(grunt.file.exists('test/fixtures/test2/tmp/test1')).to.be(false);
+    expect(grunt.file.read('test/fixtures/test2/tmp/test2')).to.equal('test2');
   });
 
 });
