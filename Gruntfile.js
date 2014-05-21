@@ -31,11 +31,6 @@ module.exports = function (grunt) {
     },
 
     submodule: {
-      'test/fixtures/test2': {
-        options: {
-          tasks: ['jshint']
-        }
-      },
       'test/fixtures/*': {
         options: {
           tasks: ['test']

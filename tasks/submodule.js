@@ -31,7 +31,7 @@ module.exports = function (grunt) {
         sources.push(data[submodule].options || {});
       }
       sources.push.apply(sources, Object.keys(data).filter(function (key) {
-        return key !== 'options' && minimatch(key, submodule);
+        return key !== 'options' && minimatch(submodule, key);
       }).map(function (key) {
         return data[key].options || {};
       }));
@@ -81,11 +81,19 @@ module.exports = function (grunt) {
       }
 
       async.eachSeries(submodules, function (submodule, done) {
-        grunt.log.ok('Submodule', submodule);
-        grunt.log.writeln();
         var options = getOptions(submodule);
         var err;
-        var args = [options.base, submodule, options.gruntfile].concat(options.tasks);
+        var args = [
+          options.base,
+          submodule,
+          options.gruntfile
+        ].concat(options.tasks).concat(grunt.option.flags());
+
+        grunt.log.ok('Submodule', submodule);
+        grunt.verbose.writeflags(options, 'Submodule options');
+        grunt.verbose.writeln('Arguments:', grunt.log.wordlist(args));
+        grunt.log.writeln();
+
         var cp = fork(__dirname + '/lib/grunt', args, {});
         cp.on('message', function (msg) {
           if (msg.fail === 'fatal') {
@@ -96,6 +104,7 @@ module.exports = function (grunt) {
           }
         });
         cp.on('close', function (code) {
+          grunt.log.writeln();
           if( code ) {
             done(err);
           } else {

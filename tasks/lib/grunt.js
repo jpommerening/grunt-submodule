@@ -18,7 +18,21 @@ if (process.argv.length < 5) {
 var base = path.resolve(process.argv[2]);
 var submodule = path.resolve(process.argv[3]);
 var gruntfile = path.join(submodule, process.argv[4]);
-var tasks = process.argv.slice(5);
+var args = process.argv.slice(5);
+var tasks = [];
+var options = {};
+args.forEach(function (arg) {
+  var option = /^--(no-)?([^=]+)(=.+)?$/.exec(arg);
+  if (!option) {
+    tasks.push(arg);
+  } else if (option[1]) {
+    options[option[2]] = false;
+  } else if (option[3]) {
+    options[option[2]] = option[3].substr(1);
+  } else {
+    options[option[2]] = true;
+  }
+});
 
 function loadTasks(orig, directory) {
   [
@@ -82,6 +96,7 @@ grunt.loadNpmTasks = grunt.task.loadNpmTasks = loadNpmTasks.bind(grunt.task, gru
 
 process.chdir(base);
 process.on('uncaughtException', uncaughtHandler);
+grunt.option.init(options);
 grunt.task.init(tasks);
 grunt.task.options({
   error: function (err) {
