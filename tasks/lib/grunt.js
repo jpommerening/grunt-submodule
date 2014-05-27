@@ -17,7 +17,7 @@ if (process.argv.length < 5) {
 /* needed args: base, submodule, gruntfile, tasks */
 var base = path.resolve(process.argv[2]);
 var submodule = path.resolve(process.argv[3]);
-var gruntfile = path.join(submodule, process.argv[4]);
+var gruntfile = path.resolve(submodule, process.argv[4]);
 var args = process.argv.slice(5);
 var tasks = [];
 var options = {};
@@ -75,7 +75,7 @@ grunt.fail.fatal = function(e, errcode) {
     errcode: errcode
   });
   grunt.task.clearQueue();
-  grunt.util.exit(typeof errcode === 'number' ? errcode : fail.code.FATAL_ERROR);
+  grunt.util.exit(typeof errcode === 'number' ? errcode : grunt.fail.code.FATAL_ERROR);
 };
 
 grunt.fail.warn = function(e, errcode) {
@@ -106,7 +106,11 @@ grunt.task.options({
     process.removeListener('uncaughtException', uncaughtHandler);
   }
 });
-require(path.resolve(submodule, gruntfile))(grunt);
+if (grunt.file.exists(gruntfile)) {
+  require(gruntfile)(grunt);
+} else {
+  grunt.fail.fatal(new Error('Gruntfile ' + gruntfile + ' does not exist!'));
+}
 tasks.forEach(function (task) {
   grunt.task.run(task);
 });

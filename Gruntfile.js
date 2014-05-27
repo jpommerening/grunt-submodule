@@ -30,19 +30,6 @@ module.exports = function (grunt) {
       }
     },
 
-    submodule: {
-      'test/fixtures/*': {
-        options: {
-          tasks: ['test']
-        }
-      },
-      'test/fixtures/test1': {
-        options: {
-          tasks: ['default']
-        }
-      }
-    },
-
     mochacli: {
       options: {
         ui: 'bdd',
@@ -78,6 +65,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-notify');
   grunt.loadNpmTasks('grunt-newer');
 
-  grunt.registerTask('test', ['clean', 'submodule', 'mochacli']);
+  grunt.registerTask('test', ['clean', 'mochacli']);
   grunt.registerTask('default', ['test', 'jshint']);
 };

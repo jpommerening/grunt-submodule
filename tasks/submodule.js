@@ -94,7 +94,10 @@ module.exports = function (grunt) {
         grunt.verbose.writeln('Arguments:', grunt.log.wordlist(args));
         grunt.log.writeln();
 
-        var cp = fork(__dirname + '/lib/grunt', args, {});
+        var cp = fork(__dirname + '/lib/grunt', args, {
+          silent: true
+        });
+        cp.stdout.pipe(grunt.log.options.outStream, {end: false});
         cp.on('message', function (msg) {
           if (msg.fail === 'fatal') {
             err = msg.error;
@@ -102,6 +105,10 @@ module.exports = function (grunt) {
           } else if (msg.fail === 'warn') {
             grunt.fail.warn(errorFromObject(msg.error), msg.errcode);
           }
+        });
+        cp.on('error', function (e) {
+          err = e;
+          done(err);
         });
         cp.on('close', function (code) {
           grunt.log.writeln();

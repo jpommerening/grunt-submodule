@@ -62,7 +62,7 @@ grunt.initConfig({
 ### Options
 
 #### options.gruntfile
-Type: `String`
+Type: `String`  
 Default value: `Gruntfile.js`
 
 The Gruntfile to use. This is relative to the submodule path, so if you want
@@ -70,7 +70,7 @@ to share the same Gruntfile with multiple submodules, just use an absolute
 path.
 
 #### options.base
-Type: `String`
+Type: `String`  
 Default value: `'.'`
 
 The base directory to load Grunt tasks from if they do not exist in the
@@ -78,7 +78,7 @@ submodule. If the submodule has its own `node_modules` or `tasks` directories
 these will take precedence over the ones inside the base directory.
 
 #### option.tasks
-Type: `Array`
+Type: `Array`  
 Default value: `[ 'default' ]`
 
 The tasks to run if no tasks were given on the command line.
