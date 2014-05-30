@@ -23,7 +23,7 @@ module.exports = function (grunt) {
     });
     var data = grunt.config(this.name) || {};
     var done = this.async();
-    var filter = arguments[0] ? minimatch.filter(arguments[0]) : function() { return true; };
+    var filter = arguments[0] ? minimatch.filter(arguments[0]) : function () { return true; };
 
     function getOptions(submodule) {
       var sources = [];
@@ -65,9 +65,9 @@ module.exports = function (grunt) {
 
       var submodules = files.map(function (file) {
         return pattern.exec(file);
-      }).filter(function(match) {
+      }).filter(function (match) {
         return match && match[1] === '160000' && filter(match[4]);
-      }).map(function(match) {
+      }).map(function (match) {
         return match[4];
       });
 
@@ -94,9 +94,7 @@ module.exports = function (grunt) {
         grunt.verbose.writeln('Arguments:', grunt.log.wordlist(args));
         grunt.log.writeln();
 
-        var cp = fork(__dirname + '/lib/grunt', args, {
-          silent: true
-        });
+        var cp = fork(__dirname + '/lib/grunt', args, {silent: true});
         cp.stdout.pipe(grunt.log.options.outStream, {end: false});
         cp.on('message', function (msg) {
           if (msg.fail === 'fatal') {
@@ -112,7 +110,7 @@ module.exports = function (grunt) {
         });
         cp.on('close', function (code) {
           grunt.log.writeln();
-          if( code ) {
+          if (code) {
             done(err);
           } else {
             done();
