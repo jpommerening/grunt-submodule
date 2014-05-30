@@ -41,8 +41,9 @@ explicit configuration.
 
 ### Overview
 
-In your project’s Gruntfile, add a section named `submodule` to the data
-object passed into `grunt.initConfig()`.
+If your submodules have their own Gruntfiles, you don’t need any configuration
+at all. Otherwise, add a section named `submodule` to the data object passed
+into `grunt.initConfig()` in your project’s Gruntfile.
 
 ```js
 grunt.initConfig({
