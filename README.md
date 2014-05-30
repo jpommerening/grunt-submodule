@@ -2,8 +2,8 @@
 
 > Run Grunt across Git submodules.
 
-`grunt-submodule` provides a Grunt task to run Grunt in a project's
-submodules. You can use the submodule's Gruntfile and `node_modules` or keep
+`grunt-submodule` provides a Grunt task to run Grunt in a project’s
+submodules. You can use the submodule’s Gruntfile and `node_modules` or keep
 both outside the submodule.
 
 ```console
@@ -18,8 +18,8 @@ $ grunt submodule:deps/*:build
 
 ## Getting Started
 
-This plugin requires Grunt (d'uh). You probably have used [Grunt][] before,
-but just in case you're wondering what this is all about, have a look at the
+This plugin requires Grunt (d’uh). You probably have used [Grunt][] before,
+but just in case you’re wondering what this is all about, have a look at the
 [Getting Started][] guide.
 
 To use this plugin, you first need to install it and add it to your Gruntfile:
@@ -32,16 +32,16 @@ $ npm install grunt-submodule --save-dev
 grunt.loadNpmTasks('grunt-submodule');
 ```
 
-## The "submodule" task
+## The “submodule” task
 
 The `submodule` task tries to mimic the behavior of [multi-tasks][] – tasks
 that can have multiple configurations, defined using arbitrarily named
-"targets." Each submodule behaves like a target but it can be used without any
+“targets.” Each submodule behaves like a target but it can be used without any
 explicit configuration.
 
 ### Overview
 
-In your project's Gruntfile, add a section named `submodule` to the data
+In your project’s Gruntfile, add a section named `submodule` to the data
 object passed into `grunt.initConfig()`.
 
 ```js
@@ -105,7 +105,7 @@ tasks in each of them.
 grunt.initConfig({
   submodule: {
     options: {
-      gruntfile: __dirname + '/Gruntfile.shared.js',
+      gruntfile: __filename,
       tasks: [ 'build', 'test' ]
     }
   }
@@ -144,7 +144,7 @@ grunt.initConfig({
 ## Contributing
 
 Just [fork the repository](https://github.com/jpommerening/grunt-submodule.git),
-send me a pull request and we'll work out the rest together, Ok?
+send me a pull request and we’ll work out the rest together, Ok?
 
 ## Release History
 _(Nothing yet)_
@@ -154,7 +154,7 @@ _(Nothing yet)_
 Copyright © 2014 Jonas Pommerening
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
+this software and associated documentation files (the “Software”), to deal in
 the Software without restriction, including without limitation the rights to
 use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
 the Software, and to permit persons to whom the Software is furnished to do so,
@@ -163,7 +163,7 @@ subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
 FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
