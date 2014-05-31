@@ -101,9 +101,11 @@ grunt.task.init(tasks);
 grunt.task.options({
   error: function (err) {
     grunt.fail.warn(err, grunt.fail.code.TASK_FAILURE);
+    process.disconnect();
   },
   done: function () {
     process.removeListener('uncaughtException', uncaughtHandler);
+    process.disconnect();
   }
 });
 if (grunt.file.exists(gruntfile)) {
