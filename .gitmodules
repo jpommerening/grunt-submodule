@@ -1,8 +1,8 @@
 [submodule "test/fixtures/test1"]
 	path = test/fixtures/test1
-	url = git@github.com:jpommerening/grunt-submodule.git
+	url = https://github.com/jpommerening/grunt-submodule.git
 	branch = submodule1
 [submodule "test/fixtures/test2"]
 	path = test/fixtures/test2
-	url = git@github.com:jpommerening/grunt-submodule.git
+	url = https://github.com/jpommerening/grunt-submodule.git
 	branch = submodule2
