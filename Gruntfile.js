@@ -2,7 +2,7 @@ module.exports = function (grunt) {
   'use strict';
 
   grunt.initConfig({
-    'submodule-test': {
+    build: {
       test1: {
         options: {
           data: 'test1'
@@ -19,7 +19,5 @@ module.exports = function (grunt) {
   });
 
   grunt.loadTasks('tasks');
-  grunt.registerTask('build', ['submodule-test:test1']);
-  grunt.registerTask('test', ['submodule-test:test2']);
   grunt.registerTask('default', ['build', 'test']);
 };

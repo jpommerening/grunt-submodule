@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
   'use strict';
 
-  grunt.registerMultiTask('submodule-test', function taskDummy() {
+  function taskDummy() {
     grunt.event.emit('submodule-test', {
       base: process.cwd(),
       gruntfile: __filename,
@@ -12,5 +12,8 @@ module.exports = function (grunt) {
       files: this.files
     });
     grunt.log.ok();
-  });
+  }
+
+  grunt.registerMultiTask('build', taskDummy);
+  grunt.registerMultiTask('test', taskDummy);
 };
