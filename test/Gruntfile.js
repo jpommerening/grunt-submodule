@@ -5,9 +5,11 @@ module.exports = function (grunt) {
     grunt.event.emit('submodule-test', {
       base: process.cwd(),
       gruntfile: __filename,
-      task: this.name,
-      args: [].slice.apply(arguments)
+      name: this.name,
+      options: this.options(),
+      arguments: [].slice.apply(arguments)
     });
+    grunt.log.ok();
   }
 
   grunt.registerTask('build', taskDummy);
