@@ -16,7 +16,9 @@ module.exports = function (grunt) {
         dest: 'tmp/test2'
       }
     },
-    test: {}
+    test: {
+      test3: {}
+    }
   });
 
   grunt.loadTasks('tasks');
