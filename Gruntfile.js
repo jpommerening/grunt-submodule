@@ -19,6 +19,7 @@ module.exports = function (grunt) {
   });
 
   grunt.loadTasks('tasks');
-  grunt.registerTask('default', ['submodule-test:test1']);
+  grunt.registerTask('build', ['submodule-test:test1']);
   grunt.registerTask('test', ['submodule-test:test2']);
+  grunt.registerTask('default', ['build', 'test']);
 };
