@@ -97,7 +97,9 @@ module.exports = function (grunt) {
         var cp = fork(__dirname + '/lib/grunt', args, {silent: true});
         cp.stdout.pipe(grunt.log.options.outStream, {end: false});
         cp.on('message', function (msg) {
-          if (msg.fail === 'fatal') {
+          if (msg.event) {
+            grunt.event.emit.apply(grunt.event, [msg.event].concat(msg.arguments));
+          } else if (msg.fail === 'fatal') {
             err = msg.error;
             grunt.fail.warn(errorFromObject(msg.error), msg.errcode);
           } else if (msg.fail === 'warn') {

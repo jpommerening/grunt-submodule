@@ -67,8 +67,14 @@ function errorToObject(e) {
   };
 }
 
+grunt.event.onAny(function () {
+  process.send({
+    event: this.event,
+    arguments: [].slice.apply(arguments)
+  });
+});
 
-grunt.fail.fatal = function(e, errcode) {
+grunt.fail.fatal = function (e, errcode) {
   process.send({
     fail: 'fatal',
     error: errorToObject(e),
@@ -78,7 +84,7 @@ grunt.fail.fatal = function(e, errcode) {
   grunt.util.exit(typeof errcode === 'number' ? errcode : grunt.fail.code.FATAL_ERROR);
 };
 
-grunt.fail.warn = function(e, errcode) {
+grunt.fail.warn = function (e, errcode) {
   process.send({
     fail: 'warn',
     error: errorToObject(e),
