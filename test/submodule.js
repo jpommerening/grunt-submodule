@@ -110,6 +110,44 @@ describe('the “submodule” task', function () {
       });
     });
 
+    describe.example('Submodule-Specific Options', function () {
+      var task = runTask.task('submodule');
+      var events = [];
+      task.on('submodule-test', events.push.bind(events));
+
+      before(function (done) {
+        this.timeout(5000);
+        task.run(done);
+      });
+      after(task.clean());
+
+      it('runs the “build” and “test” tasks in the first submodule', function () {
+        expect(events.length >= 3).to.be.ok();
+        expect(events[0].name).to.equal('build');
+        expect(events[1].name).to.equal('build');
+        expect(events[2].name).to.equal('test');
+      });
+
+      it('runs the “test” task in the second submodule', function () {
+        expect(events.length).to.equal(4);
+        expect(events[3].name).to.equal('test');
+      });
+
+      it('uses the submodule’s Gruntfiles', function () {
+        expect(events[0].gruntfile).to.equal(test1 + '/Gruntfile.js')
+        expect(events[1].gruntfile).to.equal(test1 + '/Gruntfile.js')
+        expect(events[2].gruntfile).to.equal(test1 + '/Gruntfile.js')
+        expect(events[3].gruntfile).to.equal(test2 + '/Gruntfile.js')
+      });
+
+      it('uses the submodule’s directory as base directory', function () {
+        expect(events[0].base).to.equal(test1);
+        expect(events[1].base).to.equal(test1);
+        expect(events[2].base).to.equal(test1);
+        expect(events[3].base).to.equal(test2);
+      });
+    });
+
   });
 
 });

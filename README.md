@@ -124,14 +124,14 @@ grunt.initConfig({
     options: {
       tasks: [ 'build' ]
     },
-    'deps/*': {
+    'test/fixtures/*': {
       options: {
         tasks: [ 'build', 'test' ]
       }
     },
-    'deps/grunt-submodule': {
+    'test/fixtures/test2': {
       options: {
-        tasks: [ 'test', 'jshint' ]
+        tasks: [ 'test' ]
       }
     }
   }
