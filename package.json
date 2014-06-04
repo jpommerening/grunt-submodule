@@ -1,6 +1,6 @@
 {
   "name": "grunt-submodule",
-  "version": "0.0.2",
+  "version": "0.1.0-rc1",
   "description": "Run Grunt across Git submodules without",
   "license": "MIT",
   "homepage": "https://github.com/jpommerening/grunt-submodule",
