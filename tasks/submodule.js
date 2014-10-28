@@ -23,7 +23,7 @@ module.exports = function (grunt) {
     });
     var data = grunt.config(this.name) || {};
     var done = this.async();
-    var filter = arguments[0] ? minimatch.filter(arguments[0]) : function () { return true; };
+    var filter = data.filter ? minimatch.filter(data.filter) : (arguments[0] ? minimatch.filter(arguments[0]) : function () { return true; });
 
     function getOptions(submodule) {
       var sources = [];
