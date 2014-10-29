@@ -19,11 +19,12 @@ module.exports = function (grunt) {
     var options = this.options({
       base: '.',
       gruntfile: 'Gruntfile.js',
+      filter: undefined,
       tasks: arguments.length > 1 ? [].slice.call(arguments, 1) : ['default']
     });
     var data = grunt.config(this.name) || {};
     var done = this.async();
-    var filter = data.filter ? minimatch.filter(data.filter) : (arguments[0] ? minimatch.filter(arguments[0]) : function () { return true; });
+    var filter = options.filter ? minimatch.filter(options.filter) : function () { return true; });
 
     function getOptions(submodule) {
       var sources = [];
@@ -85,7 +86,7 @@ module.exports = function (grunt) {
         var err;
         var args = [
           options.base,
-          submodule,
+          '.',
           options.gruntfile
         ].concat(options.tasks).concat(grunt.option.flags());
 
@@ -94,7 +95,7 @@ module.exports = function (grunt) {
         grunt.verbose.writeln('Arguments:', grunt.log.wordlist(args));
         grunt.log.writeln();
 
-        var cp = fork(__dirname + '/lib/grunt', args, {silent: true});
+        var cp = fork(__dirname + '/lib/grunt', args, {silent: true, cwd: submodule});
         cp.stdout.pipe(grunt.log.options.outStream, {end: false});
         cp.on('message', function (msg) {
           if (msg.event) {
