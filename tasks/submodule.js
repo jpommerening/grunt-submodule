@@ -24,7 +24,7 @@ module.exports = function (grunt) {
     });
     var data = grunt.config(this.name) || {};
     var done = this.async();
-    var filter = options.filter ? minimatch.filter(options.filter) : function () { return true; });
+    var filter = options.filter ? minimatch.filter(options.filter) : function () { return true; };
 
     function getOptions(submodule) {
       var sources = [];
