@@ -84,6 +84,12 @@ Default value: `[ 'default' ]`
 
 The tasks to run if no tasks were given on the command line.
 
+#### options.filter
+Type: `String`  
+Default value: _(empty)_
+
+Only run Grunt in the submodules that match the given pattern.
+
 ### Usage Examples
 
 #### Default Options

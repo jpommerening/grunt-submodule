@@ -15,16 +15,30 @@ module.exports = function (grunt) {
   var _ = grunt.util._;
   var git;
 
+  function matchBoth(a, b) {
+    if (a && b) {
+      var x = minimatch.filter(a);
+      var y = minimatch.filter(b);
+      return function () {
+        return x.apply(this, arguments) && y.apply(this, arguments);
+      };
+    } else if (a || b) {
+      return minimatch.filter(a || b);
+    } else {
+      return function () { return true; }
+    }
+  }
+
   grunt.registerTask('submodule', 'Run tasks across submodules.', function() {
     var options = this.options({
       base: '.',
       gruntfile: 'Gruntfile.js',
-      filter: arguments[0],
+      filter: null,
       tasks: arguments.length > 1 ? [].slice.call(arguments, 1) : ['default']
     });
     var data = grunt.config(this.name) || {};
     var done = this.async();
-    var filter = options.filter ? minimatch.filter(options.filter) : function () { return true; };
+    var filter = matchBoth(options.filter, arguments[0]);
 
     function getOptions(submodule) {
       var sources = [];
