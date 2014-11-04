@@ -12,5 +12,6 @@ env:
   - GRUNT=0.4.0
 before_install:
   - "[ ${TRAVIS_NODE_VERSION} = 0.8 ] && sed -i '/grunt-contrib-jshint/ d' package.json || true"
+  - "[ ${TRAVIS_NODE_VERSION} = 0.8 ] && sed -i '/grunt-mocha-cli/ s/1\.10\.0/1.8.0/' package.json || true"
 before_script:
   - npm install "grunt@$GRUNT"

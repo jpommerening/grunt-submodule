@@ -37,7 +37,7 @@
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-mocha-cli": "~1.8.0",
+    "grunt-mocha-cli": "~1.10.0",
     "grunt-notify": "~0.2.20",
     "grunt-newer": "~0.7.0",
     "grunt-run-task": "~0.1.0",
