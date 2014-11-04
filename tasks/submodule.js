@@ -19,11 +19,12 @@ module.exports = function (grunt) {
     var options = this.options({
       base: '.',
       gruntfile: 'Gruntfile.js',
+      filter: arguments[0],
       tasks: arguments.length > 1 ? [].slice.call(arguments, 1) : ['default']
     });
     var data = grunt.config(this.name) || {};
     var done = this.async();
-    var filter = arguments[0] ? minimatch.filter(arguments[0]) : function () { return true; };
+    var filter = options.filter ? minimatch.filter(options.filter) : function () { return true; };
 
     function getOptions(submodule) {
       var sources = [];

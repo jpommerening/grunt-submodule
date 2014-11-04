@@ -100,7 +100,6 @@ function uncaughtHandler(err) {
 grunt.loadTasks = grunt.task.loadTasks = loadTasks.bind(grunt.task, grunt.task.loadTasks);
 grunt.loadNpmTasks = grunt.task.loadNpmTasks = loadNpmTasks.bind(grunt.task, grunt.task.loadNpmTasks);
 
-process.chdir(base);
 process.on('uncaughtException', uncaughtHandler);
 grunt.option.init(options);
 grunt.task.init(tasks);
@@ -114,6 +113,9 @@ grunt.task.options({
     process.disconnect();
   }
 });
+
+process.chdir(submodule);
+
 if (grunt.file.exists(gruntfile)) {
   require(gruntfile)(grunt);
 } else {
@@ -122,5 +124,4 @@ if (grunt.file.exists(gruntfile)) {
 tasks.forEach(function (task) {
   grunt.task.run(task);
 });
-process.chdir(submodule);
 grunt.task.start({asyncDone: true});
