@@ -14,8 +14,6 @@ describe('the “submodule” task', function () {
   var test1 = __dirname + '/fixtures/test1';
   var test2 = __dirname + '/fixtures/test2';
 
-  runTask.loadTasks('tasks');
-
   describe('with default options', function() {
     var task = runTask.task('submodule');
 
