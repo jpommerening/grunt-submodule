@@ -138,6 +138,21 @@ grunt.initConfig({
 });
 ```
 
+#### Filtering Submodules
+Sometimes you might want to filter-out some submodules that don't use Grunt.
+You can use the first parameter on the CLI for filtering and you can specify
+a default filter in your Gruntfile.
+
+```js
+grunt.initConfig({
+  submodule: {
+    options: {
+      filter: 'test/fixtures/test1'
+    }
+  }
+});
+```
+
 [Grunt]: http://gruntjs.com "Grunt – The JavaScript Task Runner"
 [Getting Started]: http://gruntjs.com "Grunt – Getting Started"
 [Multi-Tasks]: http://gruntjs.com/configuring-tasks#task-configuration-and-targets
