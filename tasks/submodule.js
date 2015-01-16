@@ -25,7 +25,7 @@ module.exports = function (grunt) {
     } else if (a || b) {
       return minimatch.filter(a || b);
     } else {
-      return function () { return true; }
+      return function () { return true; };
     }
   }
 

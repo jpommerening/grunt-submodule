@@ -1,6 +1,7 @@
 module.exports = function (grunt) {
   'use strict';
 
+  /*jshint validthis: true*/
   function taskDummy() {
     grunt.event.emit('submodule-test', {
       base: process.cwd(),

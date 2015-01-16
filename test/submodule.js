@@ -4,7 +4,6 @@
  * https://github.com/jpommerening/grunt-submodule.git
  */
 var expect = require('expect.js');
-var grunt = require('grunt');
 var runTask = require('grunt-run-task');
 var markdownBdd = require('markdown-bdd');
 
@@ -55,12 +54,12 @@ describe('the “submodule” task', function () {
       });
 
       it('uses the submodule’s Gruntfiles', function () {
-        expect(events[0].gruntfile).to.equal(test1 + '/Gruntfile.js')
-        expect(events[1].gruntfile).to.equal(test1 + '/Gruntfile.js')
-        expect(events[2].gruntfile).to.equal(test1 + '/Gruntfile.js')
-        expect(events[3].gruntfile).to.equal(test2 + '/Gruntfile.js')
-        expect(events[4].gruntfile).to.equal(test2 + '/Gruntfile.js')
-        expect(events[5].gruntfile).to.equal(test2 + '/Gruntfile.js')
+        expect(events[0].gruntfile).to.equal(test1 + '/Gruntfile.js');
+        expect(events[1].gruntfile).to.equal(test1 + '/Gruntfile.js');
+        expect(events[2].gruntfile).to.equal(test1 + '/Gruntfile.js');
+        expect(events[3].gruntfile).to.equal(test2 + '/Gruntfile.js');
+        expect(events[4].gruntfile).to.equal(test2 + '/Gruntfile.js');
+        expect(events[5].gruntfile).to.equal(test2 + '/Gruntfile.js');
       });
 
       it('uses the submodule’s directory as base directory', function () {
@@ -94,10 +93,10 @@ describe('the “submodule” task', function () {
 
       it('uses the main repository’s Gruntfile', function () {
         var gruntfile = __dirname + '/Gruntfile.js';
-        expect(events[0].gruntfile).to.equal(gruntfile)
-        expect(events[1].gruntfile).to.equal(gruntfile)
-        expect(events[2].gruntfile).to.equal(gruntfile)
-        expect(events[3].gruntfile).to.equal(gruntfile)
+        expect(events[0].gruntfile).to.equal(gruntfile);
+        expect(events[1].gruntfile).to.equal(gruntfile);
+        expect(events[2].gruntfile).to.equal(gruntfile);
+        expect(events[3].gruntfile).to.equal(gruntfile);
       });
 
       it('uses the submodule’s directory as base directory', function () {
@@ -132,10 +131,10 @@ describe('the “submodule” task', function () {
       });
 
       it('uses the submodule’s Gruntfiles', function () {
-        expect(events[0].gruntfile).to.equal(test1 + '/Gruntfile.js')
-        expect(events[1].gruntfile).to.equal(test1 + '/Gruntfile.js')
-        expect(events[2].gruntfile).to.equal(test1 + '/Gruntfile.js')
-        expect(events[3].gruntfile).to.equal(test2 + '/Gruntfile.js')
+        expect(events[0].gruntfile).to.equal(test1 + '/Gruntfile.js');
+        expect(events[1].gruntfile).to.equal(test1 + '/Gruntfile.js');
+        expect(events[2].gruntfile).to.equal(test1 + '/Gruntfile.js');
+        expect(events[3].gruntfile).to.equal(test2 + '/Gruntfile.js');
       });
 
       it('uses the submodule’s directory as base directory', function () {
@@ -169,9 +168,9 @@ describe('the “submodule” task', function () {
       });
 
       it('uses the submodule’s Gruntfiles', function () {
-        expect(events[0].gruntfile).to.equal(test1 + '/Gruntfile.js')
-        expect(events[1].gruntfile).to.equal(test1 + '/Gruntfile.js')
-        expect(events[2].gruntfile).to.equal(test1 + '/Gruntfile.js')
+        expect(events[0].gruntfile).to.equal(test1 + '/Gruntfile.js');
+        expect(events[1].gruntfile).to.equal(test1 + '/Gruntfile.js');
+        expect(events[2].gruntfile).to.equal(test1 + '/Gruntfile.js');
       });
 
       it('uses the submodule’s directory as base directory', function () {
