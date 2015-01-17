@@ -111,6 +111,7 @@ grunt.task.options({
   done: function () {
     process.removeListener('uncaughtException', uncaughtHandler);
     process.disconnect();
+    grunt.util.exit(0);
   }
 });
 
